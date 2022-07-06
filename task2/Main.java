@@ -21,15 +21,15 @@ public class Main {
         long maloLet = persons.stream().filter(person -> person.getAge() < 18).count();
 
         List<String> prizivniki = persons.stream()
-                .filter(person -> person.getAge() > 18 && person.getAge() < 27)
+                .filter(person -> person.getAge() >= 18 && person.getAge() < 27)
                 .filter(person -> person.getSex().equals(Sex.MAN))
                 .map(el -> el.getFamily())
                 .collect(Collectors.toList());
 
         List<String> rabotosposobnie = persons.stream()
                 .filter(person -> person.getEducation().equals(Education.HIGHER))
-                .filter(person -> person.getSex().equals(Sex.WOMAN) && person.getAge() > 18 && person.getAge() < 60)
-                .filter(person -> person.getSex().equals(Sex.MAN) && person.getAge() > 18 && person.getAge() < 65)
+                .filter(person -> person.getSex().equals(Sex.WOMAN) & person.getAge() >= 18 & person.getAge() < 60
+                        | person.getSex().equals(Sex.MAN) & person.getAge() >= 18 & person.getAge() < 65)
 //                .sorted((x, y) -> x.getFamily().compareTo(y.getFamily()))
                 .sorted(Comparator.comparing(Person::getFamily))
                 .map(person -> person.getFamily())
